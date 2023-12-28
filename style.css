@@ -1,0 +1,47 @@
+/* Base styles for the body */
+body {
+    font-family: 'Roboto Mono', monospace;
+    background-color: #4C9141; /* May Green background color */
+    color: white;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+header, main, footer {
+    margin: 10px;
+    padding: 20px;
+}
+
+/* Styles for unvisited links */
+a:link {
+    color: yellow;
+}
+
+/* Styles for visited links */
+a:visited {
+    color: white;
+}
+
+/* Styles for links when hovered over */
+a:hover {
+    color: orange;
+}
+
+/* Styling for the info-box section */
+.info-box {
+    width: 800px;
+    height: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: auto;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+/* Styling for headings and paragraphs in info-box */
+.info-box h2, .info-box h3, .info-box h4, .info-box p {
+    margin: 10px 0;
+}
