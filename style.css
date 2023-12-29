@@ -2,7 +2,7 @@
 body {
     font-family: 'Roboto Mono', monospace;
     background-color: #386010; /* May Green background color */
-    color: #FDFF00;
+    color: #fff;
     margin: 0;
     padding: 0;
     text-align: center;
@@ -13,11 +13,40 @@ header, main, .email, footer {
     padding: 5px;
 }
 
+.content {
+    position: relative;
+    z-index: 2; 
+}
+
 .graphic{
     position: fixed;
     bottom: 0;
     left: 0;
     z-index: -1;
+}
+
+.top-bar {
+    background-color: #df3100;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 20px;
+}
+
+.metamask-btn {
+    background-color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.metamask-btn img {
+    width: 20px;
+    margin-right: 5px;
 }
 
 /* Styles for unvisited links */

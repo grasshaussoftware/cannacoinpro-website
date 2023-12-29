@@ -6,17 +6,21 @@
     <title>Cannacoin PRO</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <!-- FAV ICON CODE -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
 </head>
 <body>
-    <!-- Page Content -->
+    <div class="top-bar">
+        <button id="connectWallet" class="metamask-btn">
+            <img src="metamasklogo.png" alt="MetaMask Logo"> Connect your MetaMask
+        </button>
+    </div>
+
     <div class="content">
         <header>
-            <p><img src="cannacoinlogo100.png"></p>
+            <p><img src="cannacoinlogo100.png" alt="Cannacoin Logo"></p>
             <h1>Welcome to Cannacoin&trade; PRO</h1>
         </header>
         <h2>A simple Avalanche token for cannabis and blockchain based investment and commerce.</h2>
@@ -30,29 +34,39 @@
             info@cannacoin.org
         </div>
         <div class="graphic">
-            <img src="weed.png" alt="a scientific ink illustration of a cannabis plant">
+            <img src="weed.png" alt="Cannabis Plant Illustration">
         </div>
         <footer>
-            <p>&copy; 2023 Trap Haus Enterprises and Grass Haus Software Inc. All rights reserved. "Cannacoin" is a registered trademark of the United States Patent and Trademark Office (USPTO). This is not financial advice.</p>
-            
+            <p>&copy; 2023 Trap Haus Enterprises and Grass Haus Software Inc. All rights reserved. "Cannacoin" is a registered trademark of the USPTO. This is not financial advice.</p>
         </footer>
-    </div>    
+    </div>
+
+    <script>
+        document.getElementById('connectWallet').addEventListener('click', async () => {
+            if (window.ethereum) {
+                try {
+                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    console.log('Connected account:', accounts[0]);
+                    // Additional code to handle the connected account
+                } catch (error) {
+                    console.error('Error connecting to MetaMask:', error);
+                }
+            } else {
+                alert('MetaMask is not installed. Please install it to connect.');
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const img = document.querySelector('img[src="cannacoinlogo100.png"]');
+            img.classList.add('img-spin');
+
+            img.addEventListener('click', () => {
+                img.classList.add('img-spin-active');
+                setTimeout(() => {
+                    img.classList.remove('img-spin-active');
+                }, 1000); // 1 second
+            });
+        });
+    </script>
 </body>
-<!-- COIN FLIP CODE -->
-<script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-    const img = document.querySelector('img[src="cannacoinlogo100.png"]');
-    img.classList.add('img-spin');
-
-    img.addEventListener('click', () => {
-        img.classList.add('img-spin-active');
-
-        // Remove the class after the animation completes to allow re-spin
-        setTimeout(() => {
-            img.classList.remove('img-spin-active');
-        }, 1000); // 1000 milliseconds = 1 second
-    });
-});
-
-</script>
 </html>
