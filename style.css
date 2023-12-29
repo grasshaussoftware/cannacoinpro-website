@@ -31,10 +31,24 @@ header, main, .email, footer {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding-right: 20px;
+    padding: 0 20px;
 }
 
-.metamask-btn {
+.wallet-actions {
+    display: flex;
+    align-items: center;
+}
+
+/* Styles for the AVAX amount input */
+#avaxAmount {
+    padding: 5px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    max-width: 100px; /* Limit width of input */
+}
+
+.wallet-action-btn, .send-avax-btn {
     background-color: #ffffff;
     border: none;
     padding: 5px 10px;
@@ -43,18 +57,20 @@ header, main, .email, footer {
     align-items: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-left: 10px;
 }
 
-.metamask-btn img {
+.wallet-action-btn img, .send-avax-btn img {
     width: 20px;
     margin-right: 5px;
 }
 
-.metamask-btn:hover, .metamask-btn:focus {
+.wallet-action-btn:hover, .send-avax-btn:hover,
+.wallet-action-btn:focus, .send-avax-btn:focus {
     background-color: #e0e0e0;
 }
 
-.metamask-btn:disabled {
+.wallet-action-btn:disabled, .send-avax-btn:disabled {
     background-color: #cccccc;
     cursor: not-allowed;
 }
@@ -86,4 +102,24 @@ a:hover {
 
 .img-spin-active {
     animation: spin 1s forwards;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .top-bar {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .wallet-actions {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    #avaxAmount, .wallet-action-btn, .send-avax-btn {
+        width: 100%;
+        margin: 5px 0;
+    }
 }

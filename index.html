@@ -1,93 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cannacoin PRO</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-</head>
-<body>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  </head>
+  <body>
     <div class="top-bar">
-        <button id="walletAction" class="wallet-action-btn">Connect to MetaMask</button>
+      <button id="sendAvax" class="send-avax-btn">
+        <img src="avaxlogo.png" alt="AVAX Logo" /> Send AVAX
+      </button>
+      <div class="wallet-actions">
+        <input
+          type="number"
+          id="avaxAmount"
+          placeholder="Amount in AVAX"
+          min="0"
+        />
+
+        <button id="walletAction" class="wallet-action-btn">
+          <img src="metamasklogo.png" alt="MetaMask Logo" /> Connect to MetaMask
+        </button>
+      </div>
     </div>
 
     <div class="content">
-        <header>
-            <p><img src="cannacoinlogo100.png" alt="Cannacoin Logo"></p>
-            <h1>Welcome to Cannacoin&trade; PRO</h1>
-        </header>
-        <h2>A simple Avalanche token for cannabis and blockchain based investment and commerce.</h2>
-        <h3><code>Made with ChatGPT-4</code></h3>
-        <p><a href="https://github.com/grasshaussoftware/cannacoin-pro" target="_blank">Source Code</a></p>
-        <main>
-            <p><strong>Deployment Address:</strong> <code>0x8114BeC86C8F56c1014f590E05cD7826054EcBdE</code></p>
-            <p><strong>Pool Address:</strong> <code>0x3536b0152c91E60535508690a650C10bf09fe857</code></p>
-        </main>
-        <div class="email">
-            info@cannacoin.org
-        </div>
-        <div class="graphic">
-            <img src="weed.png" alt="Cannabis Plant Illustration">
-        </div>
-        <footer>
-            <p>&copy; 2023 Trap Haus Enterprises and Grass Haus Software Inc. All rights reserved. "Cannacoin" is a registered trademark of the USPTO. This is not financial advice.</p>
-        </footer>
+      <header>
+        <p><img src="cannacoinlogo100.png" alt="Cannacoin Logo" /></p>
+        <h1>Welcome to Cannacoin&trade; PRO</h1>
+      </header>
+      <h2>
+        A simple Avalanche token for cannabis and blockchain based investment
+        and commerce.
+      </h2>
+      <h3><code>Made with ChatGPT-4</code></h3>
+      <p>
+        <a
+          href="https://github.com/grasshaussoftware/cannacoin-pro"
+          target="_blank"
+          >Source Code</a
+        >
+      </p>
+      <main>
+        <p>
+          <strong>Deployment Address:</strong>
+          <code>0x8114BeC86C8F56c1014f590E05cD7826054EcBdE</code>
+        </p>
+        <p>
+          <strong>Pool Address:</strong>
+          <code>0x3536b0152c91E60535508690a650C10bf09fe857</code>
+        </p>
+      </main>
+      <div class="email">
+        <a href="mailto:info@cannacoin.org">info@cannacoin.org</a>
+      </div>
+      <div class="graphic">
+        <img src="weed.png" alt="Cannabis Plant Illustration" />
+      </div>
+      <footer>
+        <p>
+          &copy; 2023 Trap Haus Enterprises and Grass Haus Software Inc. All
+          rights reserved. "Cannacoin" is a registered trademark of the USPTO.
+          This is not financial advice.
+        </p>
+      </footer>
     </div>
 
     <script>
-        let userAccount;
+      let userAccount;
 
-        document.getElementById('walletAction').addEventListener('click', async () => {
-            if (!window.ethereum) {
-                alert('MetaMask is not installed. Please install it to connect.');
-                return;
+      document
+        .getElementById("walletAction")
+        .addEventListener("click", async () => {
+          if (!window.ethereum) {
+            alert("MetaMask is not installed. Please install it to connect.");
+            return;
+          }
+
+          if (!userAccount) {
+            try {
+              const accounts = await window.ethereum.request({
+                method: "eth_requestAccounts"
+              });
+              userAccount = accounts[0];
+              document.getElementById("walletAction").innerText = "Send AVAX";
+              console.log("Connected account:", userAccount);
+            } catch (error) {
+              console.error("Error connecting to MetaMask:", error);
             }
-
-            if (!userAccount) {
-                try {
-                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-                    userAccount = accounts[0];
-                    document.getElementById('walletAction').innerText = 'Send AVAX';
-                    console.log('Connected account:', userAccount);
-                } catch (error) {
-                    console.error('Error connecting to MetaMask:', error);
-                }
-            } else {
-                // Code to send AVAX
-                const transactionParameters = {
-                    to: '0x3536b0152c91E60535508690a650C10bf09fe857', // Pool Address
-                    from: userAccount,
-                    value: '0x29a2241af62c0000', // Example value in wei (1 AVAX)
-                };
-
-                try {
-                    const txHash = await ethereum.request({
-                        method: 'eth_sendTransaction',
-                        params: [transactionParameters],
-                    });
-                    console.log('Transaction Hash:', txHash);
-                } catch (error) {
-                    console.error('Transaction Error:', error);
-                }
-            }
+          } else {
+            const avaxAmount = document.getElementById("avaxAmount").value;
+            // Convert AVAX amount to wei and use in the transaction parameters
+            // ...
+          }
         });
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const img = document.querySelector('img[src="cannacoinlogo100.png"]');
-            img.classList.add('img-spin');
+      document.addEventListener("DOMContentLoaded", () => {
+        const img = document.querySelector('img[src="cannacoinlogo100.png"]');
+        img.classList.add("img-spin");
 
-            img.addEventListener('click', () => {
-                img.classList.add('img-spin-active');
-                setTimeout(() => {
-                    img.classList.remove('img-spin-active');
-                }, 1000); // 1 second
-            });
+        img.addEventListener("click", () => {
+          img.classList.add("img-spin-active");
+          setTimeout(() => {
+            img.classList.remove("img-spin-active");
+          }, 1000); // 1 second
         });
+      });
     </script>
-</body>
+  </body>
 </html>
