@@ -8,6 +8,7 @@ body {
     text-align: center;
 }
 
+/* Header, main, email, and footer styles */
 header, main, .email, footer {
     margin: 10px;
     padding: 5px;
@@ -25,77 +26,26 @@ header, main, .email, footer {
     z-index: -1;
 }
 
-.top-bar {
-    background-color: #386010;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding: 0 30px;
-}
-
-.wallet-actions {
-    display: flex;
-    align-items: center;
-}
-
-/* Styles for the AVAX amount input */
-#avaxAmount {
-    padding: 5px;
-    border-radius: 5px;
-    margin-left: 10px;
-    border: 1px solid #ccc;
-    max-width: 100px; /* Limit width of input */
-}
-
-.wallet-action-btn, .send-avax-btn {
-    background-color: #ffffff;
-    border: none;
-    margin-left: 10px;
-    padding: 5px 10px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    
-}
-
-.wallet-action-btn img, .send-avax-btn img {
-    width: 20px;
-    
-}
-
-.wallet-action-btn:hover, .send-avax-btn:hover,
-.wallet-action-btn:focus, .send-avax-btn:focus {
-    background-color: #e0e0e0;
-}
-
-.wallet-action-btn:disabled, .send-avax-btn:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-}
-
-/* Styles for unvisited links */
+/* Link styles */
 a:link {
     color: yellow;
 }
 
-/* Styles for visited links */
 a:visited {
     color: white;
 }
 
-/* Styles for links when hovered over */
 a:hover {
     color: orange;
 }
 
+/* Keyframes for spin animation */
 @keyframes spin {
     0% { transform: rotateY(0); }
     100% { transform: rotateY(360deg); }
 }
 
+/* Image spin styles */
 .img-spin {
     transition: transform 1s;
     transform-style: preserve-3d;
