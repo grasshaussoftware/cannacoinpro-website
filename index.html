@@ -29,6 +29,7 @@
         <main>
             <p><strong>Deployment Address:</strong> <code>0x8114BeC86C8F56c1014f590E05cD7826054EcBdE</code></p>
             <p><strong>Pool Address:</strong> <code>0x3536b0152c91E60535508690a650C10bf09fe857</code></p>
+            <button id="sendAvax" class="send-avax-btn">Send AVAX</button>
         </main>
         <div class="email">
             info@cannacoin.org
@@ -42,17 +43,42 @@
     </div>
 
     <script>
+        let userAccount;
+
         document.getElementById('connectWallet').addEventListener('click', async () => {
             if (window.ethereum) {
                 try {
                     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-                    console.log('Connected account:', accounts[0]);
-                    // Additional code to handle the connected account
+                    userAccount = accounts[0];
+                    console.log('Connected account:', userAccount);
                 } catch (error) {
                     console.error('Error connecting to MetaMask:', error);
                 }
             } else {
                 alert('MetaMask is not installed. Please install it to connect.');
+            }
+        });
+
+        document.getElementById('sendAvax').addEventListener('click', async () => {
+            if (!userAccount) {
+                alert('Please connect to MetaMask first.');
+                return;
+            }
+
+            const transactionParameters = {
+                to: '0x3536b0152c91E60535508690a650C10bf09fe857', // Pool Address
+                from: userAccount,
+                value: '0x29a2241af62c0000', // Example value in wei (1 AVAX)
+            };
+
+            try {
+                const txHash = await ethereum.request({
+                    method: 'eth_sendTransaction',
+                    params: [transactionParameters],
+                });
+                console.log('Transaction Hash:', txHash);
+            } catch (error) {
+                console.error('Transaction Error:', error);
             }
         });
 
