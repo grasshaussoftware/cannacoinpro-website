@@ -18,7 +18,7 @@ header, main, .email, footer {
     z-index: 2; 
 }
 
-.graphic{
+.graphic {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -42,11 +42,21 @@ header, main, .email, footer {
     display: flex;
     align-items: center;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .metamask-btn img {
     width: 20px;
     margin-right: 5px;
+}
+
+.metamask-btn:hover, .metamask-btn:focus {
+    background-color: #e0e0e0;
+}
+
+.metamask-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
 }
 
 /* Styles for unvisited links */
@@ -77,4 +87,3 @@ a:hover {
 .img-spin-active {
     animation: spin 1s forwards;
 }
-
