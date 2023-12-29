@@ -2,11 +2,7 @@
 body {
     font-family: 'Roboto Mono', monospace;
     background-color: #386010; /* May Green background color */
-<<<<<<< HEAD
-    color: #fff;
-=======
-    color: #FFFFFF;
->>>>>>> 8ab67001deb3ad00efbae0550cae990f4e6b1826
+    color: #ffffff;
     margin: 0;
     padding: 0;
     text-align: center;
@@ -39,7 +35,7 @@ header, main, .email, footer {
 }
 
 .metamask-btn {
-    background-color: #fff;
+    background-color: #ffffff;
     border: none;
     padding: 5px 10px;
     border-radius: 5px;
