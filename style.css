@@ -1,8 +1,8 @@
 /* Base styles for the body */
 body {
     font-family: 'Roboto Mono', monospace;
-    background-color: #4C9141; /* May Green background color */
-    color: white;
+    background-color: #386010; /* May Green background color */
+    color: #FDFF00;
     margin: 0;
     padding: 0;
     text-align: center;
@@ -10,7 +10,14 @@ body {
 
 header, main, .email, footer {
     margin: 10px;
-    padding: 20px;
+    padding: 5px;
+}
+
+.graphic{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
 }
 
 /* Styles for unvisited links */
