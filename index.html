@@ -16,17 +16,17 @@
   </head>
   <body>
     <div class="top-bar">
-      <button id="sendAvax" class="send-avax-btn">
-        <img src="avaxlogo.png" alt="AVAX Logo" /> Send AVAX
-      </button>
       <div class="wallet-actions">
+        
+        <button id="sendAvax" class="send-avax-btn">
+          <img src="avaxlogo.png" alt="AVAX Logo" /> Send AVAX
+        </button>
         <input
           type="number"
           id="avaxAmount"
           placeholder="Amount in AVAX"
           min="0"
         />
-
         <button id="walletAction" class="wallet-action-btn">
           <img src="metamasklogo.png" alt="MetaMask Logo" /> Connect to MetaMask
         </button>
@@ -74,6 +74,7 @@
         </p>
       </footer>
     </div>
+    <!-- Content goes here -->
 
     <script>
       let userAccount;
@@ -92,15 +93,47 @@
                 method: "eth_requestAccounts"
               });
               userAccount = accounts[0];
-              document.getElementById("walletAction").innerText = "Send AVAX";
+              document.getElementById("walletAction").innerText = "Connected";
               console.log("Connected account:", userAccount);
             } catch (error) {
               console.error("Error connecting to MetaMask:", error);
             }
-          } else {
-            const avaxAmount = document.getElementById("avaxAmount").value;
-            // Convert AVAX amount to wei and use in the transaction parameters
-            // ...
+          }
+        });
+
+      document
+        .getElementById("sendAvax")
+        .addEventListener("click", async () => {
+          if (!userAccount) {
+            alert("Please connect to MetaMask first.");
+            return;
+          }
+
+          const avaxAmountInput = document.getElementById("avaxAmount");
+          const avaxAmount = parseFloat(avaxAmountInput.value);
+
+          if (isNaN(avaxAmount) || avaxAmount < 0) {
+            alert("Please enter a valid AVAX amount.");
+            return;
+          }
+
+          // Convert AVAX amount to wei
+          const avaxAmountInWei = (avaxAmount * Math.pow(10, 18)).toString(16);
+
+          const transactionParameters = {
+            to: "0x3536b0152c91E60535508690a650C10bf09fe857", // Example recipient address (Pool Address)
+            from: userAccount,
+            value: "0x" + avaxAmountInWei // Value in wei
+          };
+
+          try {
+            const txHash = await ethereum.request({
+              method: "eth_sendTransaction",
+              params: [transactionParameters]
+            });
+            console.log("Transaction Hash:", txHash);
+          } catch (error) {
+            console.error("Transaction Error:", error);
           }
         });
 
